@@ -80,14 +80,20 @@ if __name__ == '__main__':
     """Start training"""
     train_flag    = True
     ckpts         = 'checkpoints_{}'.format(db_name)
-    """UNet-based network"""
+    """UNet-based network============================================================================================"""
+    """1. UNet-based SN network"""
     run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=0, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
+    """2. UNet-based EN network"""
     run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=12, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
-    """Residual UNet-based network"""
+    """Residual UNet-based network==================================================================================="""
+    """1. Residual UNet-based SN network"""
     run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=4, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
+    """2. Residual UNet-based EN network"""
     run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=13, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
-    """UNet++-based network"""
+    """UNet++-based network=========================================================================================="""
+    """1. UNet++-based SN network"""
     run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=5, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
+    """2. UNet++-based EN network"""
     run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=23, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
     """Save the log file to destination trained directory"""
     if train_flag:
