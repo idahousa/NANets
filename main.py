@@ -69,7 +69,10 @@ def run_experiments(i_dbs=None,i_image_shape=(256, 256, 3),i_net_id=1,i_train=Tr
             plt.show()
 if __name__ == '__main__':
     print('This module is to implement segmentation network for 2D thyroid')
-    """Preparing datasets: Customize this part according to dataset."""
+    """Training, Validation, and Testing Data Preperation"""
+    """=============================================================================================================="""
+    """Preparing datasets: Please customize this part according to dataset."""
+    """=============================================================================================================="""
     db_name = 'TDID'# TDID or 3DIM
     itrain_db, ival_db, itest_db = None, None, None
     """Note: 
