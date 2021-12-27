@@ -3,35 +3,29 @@ import imageio
 import numpy as np
 from libs.logs import Logs
 import matplotlib.pyplot as plt
-from libs.datasets.tdid import TDID_DB
 from libs.segnets.metrics import SegMetrics
 from libs.segnets.segnets import ImageSegNets
-from libs.datasets.threeDThyroid import ThreeDimThyroid
-def main(i_db_name='3D',i_image_shape=(256, 256, 3),i_fold_index=1,i_net_id=1,i_train=True,i_ckpts=None,i_batchsize=16):
+def run_experiments(i_dbs=None,i_image_shape=(256, 256, 3),i_net_id=1,i_train=True,i_ckpts=None,i_batchsize=16):
     assert isinstance(i_ckpts,str)
     assert isinstance(i_batchsize,int)
     assert i_batchsize>0
-    if i_db_name == '3D':
-        db = ThreeDimThyroid()
-        train_db, val_db, test_db= db.get_data(i_fold_index=i_fold_index,i_2d_image=True,i_semi_auto=True)
-    else:
-        db = TDID_DB()
-        train_db, val_db, test_db = db.get_train_val_test_data(i_num_folds=5, i_fold_index=i_fold_index)
     """Note: 
     - train_db, val_db and test_db are the lists of (2d_image, 2d_mask) pairs
     - 2d_image is (0,255) gray image
     - 2d_mask is (0,1) label image. 
     """
+    assert isinstance(i_dbs, (list, tuple))
+    train_db, val_db, test_db = i_dbs
     """Init the network"""
     segnet = ImageSegNets(i_net_id       = i_net_id,
-                          i_save_path    = os.path.join(os.getcwd(), i_ckpts, 'ckpts_fold_{}'.format(i_fold_index)),
+                          i_save_path    = os.path.join(os.getcwd(), i_ckpts, 'ckpts'),
                           i_image_shape  = i_image_shape,
                           i_num_classes  = 1,
                           i_continue     = i_train,
                           seg_loss       = 'Dice',
                           seg_batch_size = i_batchsize,
-                          seg_epochs     = 50,
-                          seg_repeat     = 1)
+                          seg_epochs     = 30,
+                          seg_repeat     = 3)
     if i_train:
         segnet.train(i_train_db=train_db, i_val_db=val_db)
         segnet.eval(i_db=train_db, i_debug=False)
@@ -71,25 +65,32 @@ def main(i_db_name='3D',i_image_shape=(256, 256, 3),i_fold_index=1,i_net_id=1,i_
             imageio.imwrite('predictions/{}/{}_mask.jpg'.format(i_net_id,example_index), example_mask*255)
             imageio.imwrite('predictions/{}/{}_pred.jpg'.format(i_net_id,example_index), example_pred)
             imageio.imwrite('predictions/{}/{}_fpred_{}.jpg'.format(i_net_id,example_index,dice), final_pred)
-            #plt.show()
+            plt.show()
 if __name__ == '__main__':
     print('This module is to implement segmentation network for 2D thyroid')
-    fold_index    = 1
-    db_name       = '2D' #Switch between '2D' or '3D'
+    """Preparing datasets: Customize this part according to dataset."""
+    db_name = 'TDID'# TDID or 3DIM
+    itrain_db, ival_db, itest_db = None, None, None
+    """Note: 
+    - train_db, val_db and test_db are the lists of (2d_image, 2d_mask) pairs
+    - 2d_image is (0,255) gray image
+    - 2d_mask is (0,1) label image. 
+    ================================================================================================================="""
+    """Start training"""
     train_flag    = True
-    ckpts = 'checkpoints_{}'.format(db_name)
+    ckpts         = 'checkpoints_{}'.format(db_name)
     """UNet-based network"""
-    main(i_db_name=db_name, i_fold_index=fold_index, i_net_id=0, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
-    main(i_db_name=db_name, i_fold_index=fold_index, i_net_id=12, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
+    run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=0, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
+    run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=12, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
     """Residual UNet-based network"""
-    main(i_db_name=db_name, i_fold_index=fold_index, i_net_id=4, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
-    main(i_db_name=db_name, i_fold_index=fold_index, i_net_id=13, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
+    run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=4, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
+    run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=13, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
     """UNet++-based network"""
-    main(i_db_name=db_name, i_fold_index=fold_index, i_net_id=5, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
-    main(i_db_name=db_name, i_fold_index=fold_index, i_net_id=23, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
+    run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=5, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
+    run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=23, i_train=train_flag, i_ckpts=ckpts, i_batchsize=2)
     """Save the log file to destination trained directory"""
     if train_flag:
-        Logs.move_log(i_dst_path=os.path.join(os.getcwd(), ckpts, 'ckpts_fold_{}'.format(fold_index)))
+        Logs.move_log(i_dst_path=os.path.join(os.getcwd(), ckpts, 'ckpts'))
     else:
         pass
 """=================================================================================================================="""
