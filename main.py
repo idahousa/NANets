@@ -76,6 +76,7 @@ if __name__ == '__main__':
     db_name = 'TDID'# TDID or 3DIM
     itrain_db, ival_db, itest_db = None, None, None
     """Note: 
+    - train_db, val_db and test_db are the training, validation, and testing datasets.
     - train_db, val_db and test_db are the lists of (2d_image, 2d_mask) pairs
     - 2d_image is (0,255) gray image
     - 2d_mask is (0,1) label image. 
