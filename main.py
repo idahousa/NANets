@@ -5,6 +5,7 @@ from libs.logs import Logs
 import matplotlib.pyplot as plt
 from libs.segnets.metrics import SegMetrics
 from libs.segnets.segnets import ImageSegNets
+"""Main function to run train or test of our proposed network"""
 def run_experiments(i_dbs=None,i_image_shape=(256, 256, 3),i_net_id=1,i_train=True,i_ckpts=None,i_batchsize=16):
     assert isinstance(i_ckpts,str)
     assert isinstance(i_batchsize,int)
