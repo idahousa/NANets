@@ -24,7 +24,7 @@ def run_experiments(i_dbs=None,i_image_shape=(256, 256, 3),i_net_id=1,i_train=Tr
                           i_continue     = i_train,
                           seg_loss       = 'Dice',
                           seg_batch_size = i_batchsize,
-                          seg_epochs     = 30,
+                          seg_epochs     = 50,
                           seg_repeat     = 3)
     if i_train:
         segnet.train(i_train_db=train_db, i_val_db=val_db)
