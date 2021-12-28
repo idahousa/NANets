@@ -25,8 +25,8 @@ def run_experiments(i_dbs=None,i_image_shape=(256, 256, 3),i_net_id=1,i_train=Tr
                           i_continue     = i_train,
                           seg_loss       = 'Dice',
                           seg_batch_size = i_batchsize,
-                          seg_epochs     = 50,
-                          seg_repeat     = 3)
+                          seg_epochs     = 20,
+                          seg_repeat     = 5)
     if i_train:
         segnet.train(i_train_db=train_db, i_val_db=val_db)
         segnet.eval(i_db=train_db, i_debug=False)
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     ckpts         = 'checkpoints_{}'.format(db_name)
     """UNet-based network============================================================================================"""
     """1. UNet-based SN network"""
-    run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=0, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
+    #run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=0, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
     """2. UNet-based EN network"""
     run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=12, i_train=train_flag, i_ckpts=ckpts, i_batchsize=4)
     """Residual UNet-based network==================================================================================="""
