@@ -18,17 +18,15 @@ Dat Tien Nguyen, Jiho Choi, and Kang Ryoung Park, “Thyroid Nodule Segmentation
 **Usage Instruction**
 - To train our proposed network with a custom dataset, please use the main.py script and set the train_flag flag to True.
 - To perform inference using our provided pretrained network, please provide the test dataset (itest_db in the main.py), and set the train_flag to False.
-- Providing the trainining, testing, and validation set by customize the bellow part in main.py.
+- Providing the trainining, testing, and validation set by customizing the bellow part in main.py.
 
+    itrain_db, ival_db, itest_db = None, None, None
 
-itrain_db, ival_db, itest_db = None, None, None
-
-In which: 
-- train_db, val_db and test_db are the training, validation, and testing datasets.
-- train_db, val_db and test_db are the lists of (2d_image, 2d_mask) pairs
-- 2d_image is (0,255) gray image
-- 2d_mask is (0,1) label image. 
-
+    In which: 
+    - train_db, val_db and test_db are the training, validation, and testing datasets.
+    - train_db, val_db and test_db are the lists of (2d_image, 2d_mask) pairs
+    - 2d_image is (0,255) gray image
+    - 2d_mask is (0,1) label image. 
 
 **Requiremetns**
 - Python >= 3.5
