@@ -5,13 +5,13 @@ Thyroid Nodule Segmentation in Ultrasound Image Based on Information Fusion of S
 
 This reposity is to implement our proposed network for enhancing the performance of thyroid nodule segmentation problem of conventional UNet-based network.
 
-**Please note that, the pretrained models obtained using our network on either TDID [1] or 3DThyroid  [2] datasets.**
+**Please note that, the pretrained models were obtained using our network (NANets) on either TDID [1] or 3DThyroid  [2] datasets.**
 
 [1] Pedraza, L.; Vargas, C.; Narvaez, F.; Duran, O.; Munoz, E.; Romero, E. (2015). An open access thyroid ultrasound-image database. In Proceedings of the 10th International Symposium on Medical Information Processing and Analysis, Cartagena de Indias, Colombia, 28 January 2015; Volume 9287, pp. 1–6.
 
 [2] Wunderling, T.; Golla, B.; Poudel, P.; Arens, C.; Friebe, M.; Hansen, C. (2017). Comparison of thyroid segmentation techniques for 3D ultrasound. Proceedings of SPIE Medical Imaging, Orlando, USA, 2017; https://doi.org/10.1117/12.2254234
 
-Any work that uses the code and provided pretrained network must acknowledge the authors by including the following reference.
+**Any work that uses the code and provided pretrained network must acknowledge the authors by including the following reference.**
 
 Dat Tien Nguyen, Jiho Choi, and Kang Ryoung Park, “Thyroid Nodule Segmentation in Ultrasound Image Based on Information Fusion of Suggestion and Enhancement Networks,” Expert Systems With Applications, in submission.
 
@@ -37,3 +37,4 @@ In which:
 
 **Example Results**
 
+![2021-12-29-github demo image](https://user-images.githubusercontent.com/13897797/147631167-353e8303-670b-444d-b639-6c58a6c3c649.png)
