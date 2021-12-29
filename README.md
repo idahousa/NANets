@@ -23,9 +23,9 @@ Dat Tien Nguyen, Jiho Choi, and Kang Ryoung Park, “Thyroid Nodule Segmentation
     itrain_db, ival_db, itest_db = None, None, None
 
     In which: 
-    - train_db, val_db and test_db are the training, validation, and testing datasets.
-    - train_db, val_db and test_db are the lists of (2d_image, 2d_mask) pairs
-    - 2d_image is (0,255) gray image
+    - itrain_db, ival_db and itest_db are the training, validation, and testing datasets.
+    - itrain_db, ival_db and itest_db are the lists of (2d_image, 2d_mask) pairs
+    - 2d_image is (0,255) gray or color image
     - 2d_mask is (0,1) label image. 
 
 **Requiremetns**
