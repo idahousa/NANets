@@ -76,17 +76,17 @@ if __name__ == '__main__':
     db_name = 'TDID'# TDID or 3DIM
     itrain_db, ival_db, itest_db = None, None, None
     """Note: 
-    - train_db, val_db and test_db are the training, validation, and testing datasets.
-    - train_db, val_db and test_db are the lists of (2d_image, 2d_mask) pairs
+    - itrain_db, ival_db and itest_db are the training, validation, and testing datasets.
+    - itrain_db, ival_db and itest_db are the lists of (2d_image, 2d_mask) pairs
     - 2d_image is (0,255) gray image
     - 2d_mask is (0,1) label image. 
     ================================================================================================================="""
     """Start training"""
     train_flag    = True
-    ckpts         = 'checkpoints_{}'.format(db_name)
+    ckpts         = 'checkpoints_{}'.format(db_name) #Place to store trained models.
     """UNet-based network============================================================================================"""
     """1. UNet-based SN network"""
-    #run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=0, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
+    run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=0, i_train=train_flag, i_ckpts=ckpts, i_batchsize=8)
     """2. UNet-based EN network"""
     run_experiments(i_dbs=(itrain_db,ival_db,itest_db),i_net_id=12, i_train=train_flag, i_ckpts=ckpts, i_batchsize=4)
     """Residual UNet-based network==================================================================================="""
