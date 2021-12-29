@@ -15,7 +15,7 @@ This reposity is to implement our proposed network for enhancing the performance
 
 Dat Tien Nguyen, Jiho Choi, and Kang Ryoung Park, “Thyroid Nodule Segmentation in Ultrasound Image Based on Information Fusion of Suggestion and Enhancement Networks,” Expert Systems With Applications, in submission.
 
-
+**Usage Instruction**
 - To train our proposed network with a custom dataset, please use the main.py script and set the train_flag flag to True.
 - To perform inference using our provided pretrained network, please provide the test dataset (itest_db in the main.py), and set the train_flag to False.
 - Providing the trainining, testing, and validation set by customize the bellow part in main.py.
