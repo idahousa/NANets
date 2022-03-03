@@ -11,9 +11,6 @@ This reposity is to implement our proposed network for enhancing the performance
 
 [2] Wunderling, T.; Golla, B.; Poudel, P.; Arens, C.; Friebe, M.; Hansen, C. (2017). Comparison of thyroid segmentation techniques for 3D ultrasound. Proceedings of SPIE Medical Imaging, Orlando, USA, 2017; https://doi.org/10.1117/12.2254234
 
-**Any work that uses the code and provided pretrained network must acknowledge the authors by including the following reference.**
-
-Dat Tien Nguyen, Jiho Choi, and Kang Ryoung Park, “Thyroid Nodule Segmentation in Ultrasound Image Based on Information Fusion of Suggestion and Enhancement Networks,” Expert Systems With Applications, in submission.
 
 **Usage Instruction**
 - To train our proposed network with a custom dataset, please use the main.py script and set the train_flag flag to True.
