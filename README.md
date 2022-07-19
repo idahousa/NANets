@@ -30,6 +30,13 @@ This reposity is to implement our proposed network for enhancing the performance
 - Tensorflow >= 2.1.0
 - Window 10
 
+**Any work that uses the code and provided pretrained network must acknowledge the authors by including the following reference.**
+
+Dat Tien Nguyen, Jiho Choi, and Kang Ryoung Park, “Thyroid Nodule Segmentation in Ultrasound Image Based on Information Fusion of Suggestion and Enhancement Networks,” Mathematics, in submission.
+
+
+
+
 **Example Results**
 
 ![2021-12-29-github demo image](https://user-images.githubusercontent.com/13897797/147631167-353e8303-670b-444d-b639-6c58a6c3c649.png)
